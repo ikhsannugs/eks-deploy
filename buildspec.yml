@@ -15,7 +15,7 @@ phases:
         - aws --version
         # Login to ECR Registry 
         - echo "Login in to Amazon ECR Registry"
-        - $(aws ecr get-login)
+        - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $REPOSITORY_URL
         # Update Kube config Home Directory
         - export KUBECONFIG=$HOME/.kube/config
   build:
