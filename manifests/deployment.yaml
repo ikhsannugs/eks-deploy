@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ikhsan #sesuaikan ns
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-eks-pipeline-deployment
+  namespace: ikhsan #sesuaikan ns
+  labels:
+    app: my-eks-pipeline-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-eks-pipeline-deployment
+  template:
+    metadata:
+      labels:
+        app: my-eks-pipeline-deployment
+    spec:
+      containers:
+        - name: my-eks-pipeline-deployment
+          image: CONTAINER_IMAGE
+          ports:
+            - containerPort: 80
